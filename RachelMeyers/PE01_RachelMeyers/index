@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Personal Website - Rachel Meyers</title>
+    <meta name="author" content="Rachel Meyers" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>Hello, City University of Seattle!</p>
+    <p><a href="https://www.cityu.edu/" target="_blank">Visit City University of Seattle</a></p>
+</body>
+</html>
