@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PE03 - Screen Saver with Multiple Balls</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: sans-serif;
+        }
+        canvas {
+            border: 2px solid #ffffff;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas element where the balls will bounce -->
+    <canvas id="screenSaverCanvas" width="800" height="600"></canvas>
+
+    <script>
+        // 1. Get the canvas and context
+        const canvas = document.getElementById("screenSaverCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // 2. Define the Ball Class (Data Structure)
+        class Ball {
+            constructor(x, y, dx, dy, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            // Method to draw an individual ball
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            // Method to update position and handle boundary collisions
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+
+                // Bounce off left or right walls
+                if (this.x - this.radius <= 0 || this.x + this.radius >= canvas.width) {
+                    this.dx *= -1;
+                }
+                // Bounce off top or bottom walls
+                if (this.y - this.radius <= 0 || this.y + this.radius >= canvas.height) {
+                    this.dy *= -1;
+                }
+            }
+        }
+
+        // 3. Initialize an array to hold multiple balls
+        let balls = [];
+
+        function initBalls(numBalls) {
+            balls = [];
+            for (let i = 0; i < numBalls; i++) {
+                let radius = 25;
+                // Random starting position ensuring balls stay inside canvas bounds
+                let x = Math.random() * (canvas.width - radius * 2) + radius;
+                let y = Math.random() * (canvas.height - radius * 2) + radius;
+                // Random velocities
+                let dx = (Math.random() - 0.5) * 6;
+                let dy = (Math.random() - 0.5) * 6;
+                // Random colors using HSL
+                let color = `hsl(${Math.random() * 360}, 80%, 60%)`;
+
+                balls.push(new Ball(x, y, dx, dy, radius, color));
+            }
+        }
+
+        // 4. Animation Engine Loop
+        function animate() {
+            // Clear the canvas on every frame
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Loop through every ball, update its position, and redraw it
+            balls.forEach(ball => {
+                ball.update();
+                ball.draw();
+            });
+
+            // Call the next frame recursively
+            requestAnimationFrame(animate);
+        }
+
+        // 5. Run the initialization and start the animation
+        initBalls(15); // Creates 15 bouncing balls
+        animate();
+    </script>
+</body>
+</html>
