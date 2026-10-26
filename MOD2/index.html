@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rachel Meyers Resume</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <img src="binarywave.jpg" alt="Profile Picture">
+            <h1>Rachel Meyers</h1>
+            <p>Data Science</p>
+        </header>
+        <main>
+            <section class="acordian"> 
+                <h2>Experience</h2>
+                <details class="acordian-item">
+                    <summary>Seattle Mariners</summary>
+                    <p>Parking Attendant (2026 - Present)</p>
+                    <p>Responsibilities:</p>
+                    <ul>
+                        <li>Assist customers attending Mariners games and events.</li>
+                        <li>Create a welcoming environment for fans.</li>
+                        <li>Park vehicles in the correct way to create an efficient traffic flow.</li>
+                    </ul>
+                </details>
+                <details class="acordian-item">
+                    <summary>Sur La Table/CSC Generation</summary>
+                    <p>IT Help Desk and Network Administration (2022 - 2024)</p>
+                    <p>Responsibilities:</p>
+                    <ul>
+                        <li>Assisted in technical issues and network administration.</li>
+                        <li>Made sure systems ran accourdingly for stores nationwide.</li>
+                        <li>Provided support for technical issues with in office employees.</li>
+                    </ul>
+                </details>
+            </section>
+
+            <section class="acordian" id="skills">
+                <summary>Skills</summary>
+                 <details class="acordian-item">
+                <h2>Skills</h2>
+                <table>
+                    <tr><td>HTML</td><td>Intermediate</td></tr>
+                    <tr><td>CSS</td><td>Intermediate</td></tr>
+                    <tr><td>JavaScript</td><td>Intermediate</td></tr>
+                    <tr><td>React</td><td>Intermediate</td></tr>
+                    <tr><td>Node.js</td><td>Intermediate</td></tr>
+                </table>
+                </details>
+            </section>
+            <details class="acordian-item">
+        <summary>Education</summary>
+                    <p>City University of Seattle (2024 - Present)</p>
+                    <p>Bachelor in Data Science</p>
+                    <ul>
+                        <li>Data Analysis and Visualization: Analyzing datasets using Python, pandas, descriptive statistics, and data visualizations to identify trends and patterns.</li>
+                        <li>SQL and Database Management: Writing SQL queries, working with relational databases, and organizing and retrieving data for analysis.</li>
+                        <li>Machine Learning and Artificial Intelligence: Learning the fundamentals of neural networks, machine learning models, and generative AI.</li>
+
+                        <p>Seattle Central Community College (2020 - 2023)</p>
+                    <p>AAS-T Computer Network and Administration</p>
+                    <ul>
+                        <li>Computer Networking and Troubleshooting: Understanding network connectivity, diagnosing technical issues, and resolving hardware and software problems.</li>
+                        <li>Network Administration and Systems Management: Working with computer systems, operating systems, network configurations, and user access.</li>
+                        <li>Cybersecurity and Network Security: Understanding network vulnerabilities, security practices, access controls, and methods for protecting computer systems and data.</li>
+                    </ul>
+                </details>
+                </section>
+        </main>
+
+        <footer>
+            <h3>Contact</h3>
+            <p>
+                <a href="mailto:meyersrachel@cityuniversity.edu">📧 meyersrachel@cityuniversity.edu</a>
+                <a href="tel:+123456789">📞 (123) 456-7890</a>
+            </p>
+            <p>
+                <a href="https://linkedin.com/in/rachelmeyers26">LinkedIn</a>
+                <a href="https://github.com/RachelMCityU">GitHub</a>
+            </p>
+            <p>&copy; 2026 Rachel Meyers. All rights reserved.</p>
+        </footer>
+
+        <script>
+        // Make <details> behave like an exclusive accordion (only one open per section)
+        document.querySelectorAll('.acordian').forEach(section => {
+          section.addEventListener('click', e => {
+            if (e.target.tagName.toLowerCase() === 'summary') {
+              const clicked = e.target.parentElement;
+              section.querySelectorAll('details.acordian-item').forEach(d => {
+                if (d !== clicked) d.removeAttribute('open');
+              });
+            }
+          });
+        });
+
+        // Clicking the "Skills" heading closes any open accordion items
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+          const skillsHeader = skillsSection.querySelector('h2');
+          skillsHeader?.addEventListener('click', () => {
+            document.querySelectorAll('details.acordian-item[open]').forEach(d => d.removeAttribute('open'));
+          });
+        }
+        </script>
+    </body>
+</html>
